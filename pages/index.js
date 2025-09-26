@@ -1,13 +1,15 @@
 import Head from 'next/head';
 import Layout, {siteTitle} from '../pages/component/layout';
 import utilStyles from '../styles/utils.module.css';
+import { getSortedPostData } from './lib/posts';
 // import { getSortedPostsData } from '../lib/posts';
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
+  const allPostsData = getSortedPostData();
   return {
     props: {
       allPostsData,
-    }
+    },
   }
 
 }
