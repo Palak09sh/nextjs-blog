@@ -1,15 +1,15 @@
 import Head from 'next/head';
 import Layout, {siteTitle} from '../pages/component/layout';
-import ustilStyles from '../styles/utils.module.css';
-import { getSortedPostsData } from '../lib/posts';
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+import utilStyles from '../styles/utils.module.css';
+// import { getSortedPostsData } from '../lib/posts';
+
+export async function getServerSideProps(context) {
   return {
-    // returning allPostsData inside the props object in getStaticProps, the blog posts will be passed to the Home component as a prop. 
     props: {
       allPostsData,
-    },
-}
+    }
+  }
+
 }
 export default function Home({allPostsData}) {
   return (
@@ -17,9 +17,9 @@ export default function Home({allPostsData}) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={`{$ustilStyles.headingMd} ${ustilStyles.padding1px}`}  >
-        <h2 className={ustilStyles.headingLg}>Blog</h2>
-        <ul className={ustilStyles.list}>
+      <section className={`{$utilStyles.headingMd} ${utilStyles.padding1px}`}  >
+        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <ul className={utilStyles.list}>
           {allPostsData.map(({id,date,title})=> (
              <li className={utilStyles.listItem} key={id}>
               {title}
